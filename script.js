@@ -109,7 +109,7 @@ function checkKeys(delta) {
         //console.log(camera.translation);
     }
 
-    if(keys['16']) {
+    if(keys['16'] && camera.isCrouched == false) {
        camera.movSpeed = camera.runSpeed;
        camera.isRunning = true;
     }
@@ -126,15 +126,15 @@ window.onkeydown = function(e) {
     keys[e.keyCode] = true;
     
     if(e.keyCode == "67"){
-        if(crouched == false){
+        if(camera.isCrouched == false){
         camera.translation.y -= camera.crouchAmount;
         camera.movSpeed -= camera.crouchSpeed;
-        crouched = true;
+        camera.isCrouched = true;
         }
         else{
         camera.translation.y += camera.crouchAmount;
         camera.movSpeed += camera.crouchSpeed;
-        crouched = false;
+        camera.isCrouched = false;
         }
     }
     e.preventDefault();

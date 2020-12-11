@@ -241,5 +241,6 @@ class Camera {
         this.crouchAmount = 8;
         this.crouchSpeed = 60;
         this.isRunning = false;
+        this.isCrouched = false;
     }
 }
