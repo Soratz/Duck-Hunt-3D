@@ -1,5 +1,5 @@
 //
-function createMap() {
+function createMap(gl) {
     cube = new Cube(gl, 20);
     cube2 = new Cube(gl, 35);
     cube3 = new Cube(gl, 100);

@@ -35,7 +35,7 @@ function main() {
     gl.clearColor(0, 0, 0, 1.0);
     gl.useProgram(program);
 
-    createMap();
+    createMap(gl);
 
     old = 0;
 
