@@ -125,8 +125,8 @@ function checkKeys(delta) {
 window.onkeydown = function(e) {
     keys[e.keyCode] = true;
     
-    if(e.keyCode == "67"){
-        if(camera.isCrouched == false){
+    if(e.keyCode == "67" && camera.isRunning == false){
+        if(camera.isCrouched == false ){
         camera.translation.y -= camera.crouchAmount;
         camera.movSpeed -= camera.crouchSpeed;
         camera.isCrouched = true;
