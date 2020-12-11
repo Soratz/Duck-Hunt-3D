@@ -235,8 +235,11 @@ class Camera {
         }
 
         this.movSpeed = 80;
+        this.runSpeed = 500;
+        this.walkSpeed = 80;
         this.rotateSpeed = 0.007;
         this.crouchAmount = 8;
         this.crouchSpeed = 60;
+        this.isRunning = false;
     }
 }

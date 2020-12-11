@@ -6,6 +6,7 @@ var objects = [];
 
 var crouched = false;
 
+
 function main() {
     const canvas = document.createElement('canvas');
     document.querySelector('body').appendChild(canvas);
@@ -107,11 +108,23 @@ function checkKeys(delta) {
         camera.translation.z -= delta * camera.movSpeed * direction * Math.cos(camera.rotation.y + Math.PI / 2);
         //console.log(camera.translation);
     }
+
+    if(keys['16']) {
+       camera.movSpeed = camera.runSpeed;
+       camera.isRunning = true;
+    }
+
+    if(camera.isRunning == true && keys['16'] != 1){
+        camera.movSpeed = camera.walkSpeed;
+        camera.isRunning = false;
+    }
+
+    
 }
 
 window.onkeydown = function(e) {
     keys[e.keyCode] = true;
-
+    
     if(e.keyCode == "67"){
         if(crouched == false){
         camera.translation.y -= camera.crouchAmount;
