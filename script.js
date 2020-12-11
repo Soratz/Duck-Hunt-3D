@@ -125,6 +125,24 @@ function checkKeys(delta) {
 window.onkeydown = function(e) {
     keys[e.keyCode] = true;
     e.preventDefault();
+
+    window.onkeydown = function(e) {
+        keys[e.keyCode] = true;
+    
+        if(e.keyCode == "67"){
+            if(crouched == false){
+            camera.translation.y -= 8;
+            camera.movSpeed = 20;
+            crouched = true;
+            }
+            else{
+            camera.translation.y += 8;
+            camera.movSpeed = 60;
+            crouched = false;
+            }
+        }
+        e.preventDefault();
+    };
 };
 
 window.onkeyup = function(e) {
