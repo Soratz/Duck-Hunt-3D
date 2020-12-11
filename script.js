@@ -35,20 +35,7 @@ function main() {
     gl.clearColor(0, 0, 0, 1.0);
     gl.useProgram(program);
 
-    cube = new Cube(gl, 20);
-    cube2 = new Cube(gl, 35);
-    cube3 = new Cube(gl, 100);
-    cube4 = new Cube(gl, 50);
-    cylinder = new Cylinder(gl, 8, 30, 90);
-    cylinder.rotation.x = degToRad(30);
-
-    cylinder.translation = {x: -20, y: 20, z: 60};
-    cube4.translation = {x: 0, y: -60, z: 10}
-
-    cube.translation = {x: 20, y: -40, z: -70}
-    cube2.translation = {x:-40, y:-30, z:-150}
-    cube3.translation.y = 1000;
-    cube2.scale.y = 2;
+    createMap();
 
     old = 0;
 
@@ -57,7 +44,6 @@ function main() {
 
 
 function drawScene(now) {
-    let rotationSpeed = degToRad(17); // radian per second
     now *= 0.001; // converting to seconds
     let delta = now - old;
     checkKeys(delta); // checks the pressed keys
@@ -82,9 +68,8 @@ function drawScene(now) {
     var viewMatrix = m4.inverse(cameraMatrix);
     projectionMatrix = m4.multiply(viewMatrix, projectionMatrix);
 
-    cube2.rotation.y += rotationSpeed * delta;
-    cube2.rotation.z += rotationSpeed * delta;
-    //cube2.rotation.x += rotationSpeed * (now - old);
+    updateObjects(delta);
+    
     old = now;
 
     GameObject.objects.forEach(drawObject);
