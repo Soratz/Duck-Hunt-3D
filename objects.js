@@ -87,7 +87,7 @@ class Cube extends GameObject {
         super(gl);
 
         let half = edge / 2;
-        this.hitRadius = Math.sqrt(2) * half;
+        this.hitRadius = 1.18 * half;
         this.centerTranslation = {
             x: -half,
             y: -half,
