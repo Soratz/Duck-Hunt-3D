@@ -57,7 +57,7 @@ function drawScene(now) {
     let aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
     let zNear = 1;
     let zFar = 2000;
-    let fieldOfView = 65;
+    let fieldOfView = camera.fieldOfView;
     projectionMatrix = m4.perspective(fieldOfView, aspect, zNear, zFar);
 
     // camera operations and matrices

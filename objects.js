@@ -23,10 +23,33 @@ class GameObject {
         this.centerTranslation = {
             x: 0, y: 0, z: 0
         }
+        this.hitRadius = 1
         
         this.posBuffer = gl.createBuffer();
         this.colorBuffer = gl.createBuffer();
         GameObject.objects.push(this);
+    }
+
+    checkCollision() {
+        let collision = false;
+        GameObject.objects.forEach((target) => {
+            if(target != this) {
+                let distance = 0;
+                let diff = this.translation.x - target.translation.x;
+                distance += diff * diff;
+                diff = this.translation.y - target.translation.y;
+                distance += diff * diff;
+                diff = this.translation.z - target.translation.z;
+                distance += diff * diff;
+                distance = Math.sqrt(distance);
+                
+                if(distance <= target.hitRadius + this.hitRadius) {
+                    console.log(distance + ":" + (target.hitRadius + this.hitRadius));
+                    collision = true;
+                }
+            } 
+        });
+        return collision;
     }
 
     createBuffers(positionALocation, colorALocation) {
@@ -64,6 +87,7 @@ class Cube extends GameObject {
         super(gl);
 
         let half = edge / 2;
+        this.hitRadius = Math.sqrt(2) * half;
         this.centerTranslation = {
             x: -half,
             y: -half,
@@ -173,8 +197,10 @@ class Cube extends GameObject {
 class Cylinder extends GameObject {
     constructor(gl, num_of_vertices, radius, height) {
         super(gl); // calling super constructor
-
         let radian = degToRad(360 / num_of_vertices);
+
+        this.hitRadius = radius;
+
         if (num_of_vertices < 3) {
             num_of_vertices = 3;
         }
@@ -242,5 +268,6 @@ class Camera {
         this.crouchSpeed = 60;
         this.isRunning = false;
         this.isCrouched = false;
+        this.fieldOfView = 67;
     }
 }
