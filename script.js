@@ -4,8 +4,6 @@ var keys = {};
 
 var objects = [];
 
-var crouched = false;
-
 
 function main() {
     const canvas = document.createElement('canvas');
@@ -144,6 +142,13 @@ window.onkeyup = function(e) {
     keys[e.keyCode] = false;
     e.preventDefault();
 };
+
+window.onmousedown = function(e){
+
+    var bullet = new Bullet(gl, 10, 0.3, 3);
+    bullet.translation = {x: camera.translation.x, y: camera.translation.y, z: camera.translation.z};
+    bullet.rotation = {x: camera.rotation.x + 1.570, y: camera.rotation.y , z: camera.rotation.z};
+}
 
 window.onmousemove = function(e) {
     let limit = Math.PI / 2;

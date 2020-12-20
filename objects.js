@@ -271,3 +271,26 @@ class Camera {
         this.fieldOfView = 67;
     }
 }
+
+class Bullet extends Cylinder{
+    constructor(gl, num_of_vertices, radius, height) {
+        super(gl, num_of_vertices, radius, height);
+
+        this.translation = {
+            x: 0,
+            y: 0,
+            z: 0
+        }
+        this.rotation = {
+            x: 0,
+            y: 0,
+            z: 0
+        }
+
+        this.bulletSpeed = {
+            x: 0,
+            y: 0,
+            z: 0
+        };
+    }
+}
