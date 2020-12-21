@@ -2,6 +2,7 @@ var camera = new Camera();
 
 var keys = {};
 
+var bullets = [];
 var objects = [];
 
 
@@ -70,6 +71,13 @@ function drawScene(now) {
     updateObjects(delta);
     
     old = now;
+
+    var size
+    if( (size = bullets.length) != 0){
+        for (var i = 0 ; i< size ; i++){
+        bullets[i].moveBullet(delta);
+        }
+    }
 
     GameObject.objects.forEach(drawObject);
 
@@ -147,7 +155,9 @@ window.onmousedown = function(e){
 
     var bullet = new Bullet(gl, 10, 0.3, 3);
     bullet.translation = {x: camera.translation.x, y: camera.translation.y, z: camera.translation.z};
-    bullet.rotation = {x: camera.rotation.x + 1.570, y: camera.rotation.y , z: camera.rotation.z};
+    bullet.rotation = {x: camera.rotation.x  + 1.570 , y: camera.rotation.y , z: camera.rotation.z};
+    console.log(Math.cos(bullet.rotation.x ));
+    bullets.push(bullet);
 }
 
 window.onmousemove = function(e) {

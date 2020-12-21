@@ -60,6 +60,6 @@ function createMap(gl) {
  */
 function updateObjects(delta) {
     let rotationSpeed = degToRad(17); // radian per second
-
+    ringString121.rotation= rotationSpeed;
 
 }
