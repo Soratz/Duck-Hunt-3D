@@ -12,6 +12,7 @@ function createMap(gl) {
     ringString121 = new Cylinder(gl, 20, 2, 2);
     ringString122 = new Cylinder(gl, 20, 2, 2);
     wallBehind = new Cube(gl, 2);
+    duck = new Duck(gl);
 
     floor.translation = {x: 10, y: -50, z: 20}
     floor.scale.x = 3;
@@ -51,7 +52,6 @@ function createMap(gl) {
     wallBehind.translation = {x: 10, y: 0, z: -40};
     wallBehind.scale.y = 20;
     wallBehind.scale.x = 90;
-
 }
 
 /**
