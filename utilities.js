@@ -45,7 +45,7 @@ function createProgram(gl, vertexShaderSource, fragmentShaderSource) {
  * 
  * @param {HTMLCanvasElement} canvas 
  */
-function resize(canvas) {
+function resize(canvas, tCanvas) {
     // Lookup the size the browser is displaying the canvas.
     var displayWidth  = canvas.clientWidth;
     var displayHeight = canvas.clientHeight;
@@ -57,6 +57,15 @@ function resize(canvas) {
       // Make the canvas the same size
       canvas.width  = displayWidth;
       canvas.height = displayHeight;
+    }
+
+    // Check if the canvas is not the same size.
+    if (tCanvas.width  != displayWidth ||
+        tCanvas.height != displayHeight) {
+   
+      // Make the canvas the same size
+      tCanvas.width  = displayWidth;
+      tCanvas.height = displayHeight;
     }
 }
 

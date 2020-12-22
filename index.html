@@ -11,10 +11,20 @@
             background-color: white;
         }
         /* make the canvas the size of the viewport */
-        canvas {
+        #gl_canvas {
+            position: fixed;
             width: 100vw;
             height: 100vh;
             display: block;
+        }
+
+        #text {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100vw;
+            height: 100vh;
+            z-index: 5;
         }
     </style>
 
@@ -53,6 +63,6 @@
     <title>WebGL Training</title>
 </head>
 <body>
-  
+
 </body>
 </html>

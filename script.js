@@ -5,10 +5,17 @@ var keys = {};
 var bullets = [];
 var objects = [];
 
+var gameScore = 0;
 
 function main() {
     const canvas = document.createElement('canvas');
+    textCanvas = document.createElement('canvas');
+    canvas.id = "gl_canvas";
+    textCanvas.id = "text";
     document.querySelector('body').appendChild(canvas);
+    document.querySelector('body').appendChild(textCanvas);
+
+    ctx = textCanvas.getContext("2d");
 
     gl = canvas.getContext("webgl"); // Initialize the GL context
     // Only continue if WebGL is available and working.
@@ -17,7 +24,7 @@ function main() {
         return;
     }
 
-    canvas.onclick = function() {
+    textCanvas.onclick = function() {
         canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
         
         canvas.requestPointerLock();
@@ -48,9 +55,10 @@ function drawScene(now) {
     let delta = now - old;
     checkKeys(delta); // checks the pressed keys
 
-    resize(gl.canvas);
+    resize(gl.canvas, textCanvas);
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height); // Tell WebGL how to convert from clip space to pixels
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); // Clear the canvas and the depth buffer.
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // clears text canvas.
 
     // creating projection matrix.
     let aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
@@ -80,6 +88,17 @@ function drawScene(now) {
     }
 
     GameObject.objects.forEach(drawObject);
+    
+    ctx.textAlign = "left";
+    ctx.font = "40px Arial";
+    ctx.strokeStyle = 'white';
+    ctx.strokeText("Score: " + gameScore, 10, 40);
+    ctx.textAlign = "center";
+    ctx.font = "35px Arial";
+    ctx.fillStyle = 'white';
+    ctx.fillText("+", textCanvas.width/2, textCanvas.height/2 + 15);
+    ctx.strokeStyle = 'black';
+    ctx.strokeText("+", textCanvas.width/2, textCanvas.height/2 + 15);
 
     requestAnimationFrame(drawScene);
 }

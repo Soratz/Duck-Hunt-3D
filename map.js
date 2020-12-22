@@ -14,6 +14,8 @@ function createMap(gl) {
     wallBehind = new Cube(gl, 2);
     duck = new Duck(gl);
 
+    duck.translation = {x: 20, y: 10, z: -30};
+
     floor.translation = {x: 10, y: -50, z: 20}
     floor.scale.x = 3;
     floor.scale.z = 2;
@@ -25,7 +27,7 @@ function createMap(gl) {
     ringPole2.scale.y = 5;
 
     ringPole3.translation = {x: 95, y: -10, z: -35};
-     ringPole3.scale.y = 5;
+    ringPole3.scale.y = 5;
 
     ringPole4.translation = {x: -75, y: -10, z: -35};
     ringPole4.scale.y = 5;

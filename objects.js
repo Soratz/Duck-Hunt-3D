@@ -30,8 +30,14 @@ class GameObject {
         GameObject.objects.push(this);
     }
 
+    die() {
+        let index = GameObject.objects.indexOf(this);
+        GameObject.objects.splice(index, 1);
+        delete this;
+    }
+
     checkCollision() {
-        let collision = false;
+        let collidedTarget = null;
         GameObject.objects.forEach((target) => {
             if(target != this) {
                 let distance = 0;
@@ -44,12 +50,13 @@ class GameObject {
                 distance = Math.sqrt(distance);
                 
                 if(distance <= target.hitRadius + this.hitRadius) {
-                    console.log(distance + ":" + (target.hitRadius + this.hitRadius));
-                    collision = true;
+                    //console.log(distance + ":" + (target.hitRadius + this.hitRadius));
+                    collidedTarget = target;
+                    return;
                 }
             } 
         });
-        return collision;
+        return collidedTarget;
     }
 
     createBuffers(positionALocation, colorALocation) {
@@ -294,17 +301,23 @@ class Bullet extends Cylinder{
             z: 0
         };
 
-        this.speed = 100;
-
+        this.speed = 500;
+    }
+    
+    moveBullet(delta) {
+        let target = this.checkCollision();
+        if(target instanceof Duck) {
+            target.die();
+            this.die();
+            gameScore += 1;
+        } else {
+            this.translation.x -= delta  * this.bulletVector.x;
+            this.translation.y -= delta  * this.bulletVector.y; 
+            this.translation.z -= delta  * this.bulletVector.z;
         }
-    
-        moveBullet(delta) {
-        this.translation.x -= delta  * this.bulletVector.x;
-        this.translation.y -= delta  * this.bulletVector.y; 
-        this.translation.z -= delta  * this.bulletVector.z;
-    
     }
 }
+
 
 class Duck extends GameObject {
     constructor(gl) {
