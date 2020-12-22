@@ -154,9 +154,13 @@ window.onkeyup = function(e) {
 window.onmousedown = function(e){
 
     var bullet = new Bullet(gl, 10, 0.3, 3);
-    bullet.translation = {x: camera.translation.x, y: camera.translation.y, z: camera.translation.z};
+    bullet.translation = {x: camera.translation.x, y: camera.translation.y , z: camera.translation.z };
     bullet.rotation = {x: camera.rotation.x  + 1.570 , y: camera.rotation.y , z: camera.rotation.z};
-    console.log(Math.cos(bullet.rotation.x ));
+
+    var horizontalV = Math.sin(bullet.rotation.x);
+    bullet.bulletVector = {x: bullet.speed * Math.sin(bullet.rotation.y ) * horizontalV,
+                           y: bullet.speed * Math.cos(bullet.rotation.x ), 
+                           z: bullet.speed * Math.cos(bullet.rotation.y )*  horizontalV};
     bullets.push(bullet);
 }
 

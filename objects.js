@@ -288,14 +288,20 @@ class Bullet extends Cylinder{
             z: 0
         };
 
-        this.bulletSpeed = 20;
+        this.bulletVector = {
+            x: 0,
+            y: 0,
+            z: 0
+        };
+
+        this.speed = 100;
 
         }
     
         moveBullet(delta) {
-        this.translation.x -= delta * this.bulletSpeed * Math.sin(this.rotation.y ) * Math.sin(this.rotation.x);
-        this.translation.y -= delta * this.bulletSpeed * Math.cos(this.rotation.x ); 
-        this.translation.z -= delta * this.bulletSpeed * Math.cos(this.rotation.y )*  Math.sin(this.rotation.x);
+        this.translation.x -= delta  * this.bulletVector.x;
+        this.translation.y -= delta  * this.bulletVector.y; 
+        this.translation.z -= delta  * this.bulletVector.z;
     
     }
 }
