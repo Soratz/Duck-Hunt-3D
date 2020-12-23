@@ -173,13 +173,18 @@ window.onkeyup = function(e) {
 window.onmousedown = function(e){
 
     var bullet = new Bullet(gl, 10, 0.3, 3);
-    bullet.translation = {x: camera.translation.x, y: camera.translation.y , z: camera.translation.z };
-    bullet.rotation = {x: camera.rotation.x  + 1.570 , y: camera.rotation.y , z: camera.rotation.z};
+    bullet.translation = {  x: camera.translation.x - 10 * Math.cos(camera.rotation.x ) * Math.sin(camera.rotation.y), 
+                            y: camera.translation.y + 10 * Math.sin(camera.rotation.x), 
+                            z: camera.translation.z - 10 * Math.cos(camera.rotation.x ) * Math.cos(camera.rotation.y) };
 
+    bullet.rotation = {x: camera.rotation.x + Math.PI / 2, y: camera.rotation.y, z: camera.rotation.z};
+
+    console.log(camera.rotation, bullet.translation, Math.sin(bullet.rotation.y), Math.cos(bullet.rotation.y));
     var horizontalV = Math.sin(bullet.rotation.x);
+
     bullet.bulletVector = {x: bullet.speed * Math.sin(bullet.rotation.y ) * horizontalV,
                            y: bullet.speed * Math.cos(bullet.rotation.x ), 
-                           z: bullet.speed * Math.cos(bullet.rotation.y )*  horizontalV};
+                           z: bullet.speed * Math.cos(bullet.rotation.y ) * horizontalV};
     bullets.push(bullet);
 }
 
@@ -195,6 +200,8 @@ window.onmousemove = function(e) {
     else if(camera.rotation.x < -limit) {
         camera.rotation.x = -limit;
     }
+
+    
 }
 
 window.onload = main;
