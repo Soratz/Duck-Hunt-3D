@@ -18,32 +18,45 @@ function createMap(gl) {
     mountain = new Triangle(gl, 100);
     mountain.translation.z = 2000;
     mountain.translation.y = 400;
+    mountain.translation = {x: 600, y:400, z: 2000};
     mountain.scale.x = 10;
     mountain.scale.y = 10;
     mountain.setColor(90, 61, 32);
 
     mountainPeek = new Triangle(gl, 20);
-    mountainPeek.translation.z = 1998;
-    mountainPeek.translation.y = 400;
+    mountainPeek.translation = {x: 600, y:400, z: 1998};
     mountainPeek.scale.x = 10;
     mountainPeek.scale.y = 10;
     mountainPeek.setColor(230, 230, 230);
 
     tree1body = new Cylinder(gl, 12, 6, 180); //brown
+    tree1body.setAllColors(81,69,48);
     tree1branch1 = new Cylinder(gl, 12, 3, 50); //brown (lighter maybe?)
+    tree1branch1.setAllColors(81,69,48);
     tree1leaf1 = new Cube(gl, 70) //green
+    tree1leaf1.setColor(19, 78, 49);
     tree1leaf2 = new Cube(gl, 20) //green
+    tree1leaf2.setColor(19, 78, 49);
 
     tree2body = new Cylinder(gl, 8, 8, 300); //brown
+    tree2body.setAllColors(160,82,45);
     tree2branch1 = new Cylinder(gl, 8, 5, 90)
+    tree2branch1.setAllColors(160,82,45);
     tree2branch2 = new Cylinder(gl, 6, 4, 50)
+    tree2branch2.setAllColors(160,82,45);
     tree2leaf1 = new Cube(gl, 150)
+    tree2leaf1.setColor(19, 78, 19);
     tree2leaf2 = new Cube(gl, 50)
+    tree2leaf2.setColor(19, 78, 19);
     tree2leaf3 = new Cube(gl, 30);
+    tree2leaf3.setColor(19, 78, 19);
 
     tree3body = new Cylinder(gl, 8, 8, 250);
+    tree3body.setAllColors(139,90,43);
     tree3leaf1 = new Cube(gl, 120)
+    tree3leaf1.setColor(78, 19, 48);
     tree3leaf2 = new Cube(gl, 70)
+    tree3leaf2.setColor(78, 19, 48);
 
     randomSpawner = new RandomSpawner(1, 5);
     duck = new Duck(gl);
@@ -131,7 +144,7 @@ function createMap(gl) {
 
     floor.setColor(150, 50, 50);  // küpler böyle set color diyerek direk yapabilirsin
 
-    tree3body.setAllColors(83, 53, 10); // silindirler de setAll colors dersen bütün yüzleri aynı renk ypaıyor
+     // silindirler de setAll colors dersen bütün yüzleri aynı renk ypaıyor
     
     /*
     Eğer yüzleri ayrı ayrı boyayacaksan alttaki gibi en son refreshColors() demeyi unutma yoksa çalışmaz.
