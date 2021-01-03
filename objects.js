@@ -394,19 +394,34 @@ class Bullet extends Cylinder{
 
 class Weapon{
     constructor(gl) {
-        this.barrel = new Cylinder(gl, 8, 0.3, 8);
+        this.barrel = new Cylinder(gl, 20, 0.25, 8);
+        this.stock = new Cube(gl, 0.3);
+        this.arpa = new Cube(gl,0.15)
+        this.stock.scale.y = 2;
+        this.arpa.scale.y=2;
         this.barrel.rotation.x = degToRad(90); 
         this.barrel.translation = {x: 0.3, y:-0.5, z:-5};
 
-        this.movSpeed = 80;
+        this.arpa.setColor(63,0,0);
+        this.barrel.setPanelColor(0, 0, 139);
+        this.barrel.setBottomColor(63, 63, 0);
+        this.barrel.refreshColors();
         
     }
 
     updateWeaponPos({x: camTx , y: camTy, z: camTz}, {x: camRx , y: camRy, z: f}){
-        weapon.barrel.translation = {    x: camTx - 10 * Math.cos(camRx + degToRad(-5)) * Math.sin(camRy), 
-                                         y: camTy + 10 * Math.sin(camRx + degToRad(-5)), 
-                                         z: camTz - 10 * Math.cos(camRx + degToRad(-5)) * Math.cos(camRy) };
+        this.barrel.translation = { x: camTx - 10 * Math.cos(camRx + degToRad(-5)) * Math.sin(camRy), 
+                                    y: camTy + 10 * Math.sin(camRx + degToRad(-5)), 
+                                    z: camTz - 10 * Math.cos(camRx + degToRad(-5)) * Math.cos(camRy) };
+        this.stock.translation = {  x: camTx - 2.3 * Math.cos(camRx + degToRad(-30)) * Math.sin(camRy), 
+                                    y: camTy + 2.3 * Math.sin(camRx + degToRad(-30)), 
+                                    z: camTz - 2.3 * Math.cos(camRx + degToRad(-30)) * Math.cos(camRy) };
+        this.arpa.translation = {x: camTx - 10 * Math.cos(camRx + degToRad(-3.2)) * Math.sin(camRy), 
+                                 y: camTy + 10 * Math.sin(camRx + degToRad(-3.2)), 
+                                 z: camTz - 10 * Math.cos(camRx + degToRad(-3.2)) * Math.cos(camRy)}
+                                 
     }
+
 }
 
 

@@ -200,6 +200,14 @@ window.onmousemove = function(e) {
     weapon.barrel.rotation= { x: camera.rotation.x + Math.PI / 2, 
         y: camera.rotation.y,
         z: camera.rotation.z};
+
+    weapon.stock.rotation= { x: camera.rotation.x, 
+                            y: camera.rotation.y,
+                            z: camera.rotation.z};
+
+    weapon.arpa.rotation =  { x: camera.rotation.x, 
+                            y: camera.rotation.y,
+                             z: camera.rotation.z};
     
     if(camera.rotation.x > limit) {
         camera.rotation.x = limit;
