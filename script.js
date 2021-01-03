@@ -3,7 +3,6 @@ var camera = new Camera();
 var keys = {};
 
 var bullets = [];
-var objects = [];
 
 var gameScore = 0;
 

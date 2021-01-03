@@ -199,6 +199,18 @@ class Cube extends GameObject {
             0, 180, 180
         ];
     }
+
+    setColor(r, g, b) {    
+        r = r > 255 ? 255 : r;
+        g = g > 255 ? 255 : g;
+        b = b > 255 ? 255 : b;
+
+        for(let i = 0; i < this.points.length; i += 3) {
+            this.colors[i] = r;
+            this.colors[i + 1] = g;
+            this.colors[i + 2] = b;
+        }
+    }
 }
 
 class Cylinder extends GameObject {
@@ -207,10 +219,14 @@ class Cylinder extends GameObject {
         let radian = degToRad(360 / num_of_vertices);
 
         this.hitRadius = radius;
+        this.frontColor = [200, 200, 200];
+        this.backColor = [100, 100, 100];
+        this.panelColor = [70, 70, 70,];
 
         if (num_of_vertices < 3) {
             num_of_vertices = 3;
         }
+        this.num_of_vertices = num_of_vertices;
         
         let old_point = {
             x: radius,
@@ -250,6 +266,49 @@ class Cylinder extends GameObject {
         }
 
         this.points = this.points.flat();
+        this.colors = this.colors.flat();
+    }
+
+    setAllColors(r, g, b) {
+        this.frontColor = [r, g, b];
+        this.backColor = [r, g, b];
+        this.panelColor = [r, g, b];
+        this.refreshColors();
+    }
+
+    setBottomColor(r, g, b) {
+        this.frontColor = [r, g, b];
+    }
+
+    setTopColor(r, g, b) {
+        this.backColor = [r, g, b];
+    }
+
+    setPanelColor(r, g, b) {
+        this.panelColor = [r, g, b];
+    }
+
+    refreshColors() {
+        this.colors = [];
+        let fr = this.frontColor[0];
+        let fg = this.frontColor[1];
+        let fb = this.frontColor[2];
+
+        let br = this.backColor[0];
+        let bg = this.backColor[1];
+        let bb = this.backColor[2];
+
+        let pr = this.panelColor[0];
+        let pg = this.panelColor[1];
+        let pb = this.panelColor[2];
+
+        for(let i = 0; i < this.num_of_vertices; i++) {
+            this.colors.push([fr, fg, fb, fr, fg, fb, fr, fg, fb]); // front;
+            this.colors.push([br, bg, bb, br, bg, bb, br, bg, bb]); // back;
+            this.colors.push([pr, pg, pb, pr, pg, pb, pr, pg, pb]); // panel;
+            this.colors.push([pr, pg, pb, pr, pg, pb, pr, pg, pb]); // panel;
+        }
+
         this.colors = this.colors.flat();
     }
 }
@@ -302,6 +361,14 @@ class Bullet extends Cylinder{
         };
 
         this.speed = 500;
+
+        this.die = function() {
+            let i1 = GameObject.objects.indexOf(this);
+            let i2 = bullets.indexOf(this);
+            GameObject.objects.splice(i1, 1);
+            bullets.splice(i2, 1);
+            delete this;
+        }; 
     }
     
     moveBullet(delta) {

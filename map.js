@@ -106,6 +106,18 @@ function createMap(gl) {
     tree3leaf1.translation = {x: -250, y: 110, z:200}
     tree3leaf1.scale.y = 0.5;
     tree3leaf2.translation = {x: -250, y: 150, z:200}
+
+    floor.setColor(150, 50, 50);  // küpler böyle set color diyerek direk yapabilirsin
+
+    tree3body.setAllColors(83, 53, 10); // silindirler de setAll colors dersen bütün yüzleri aynı renk ypaıyor
+    
+    /*
+    Eğer yüzleri ayrı ayrı boyayacaksan alttaki gibi en son refreshColors() demeyi unutma yoksa çalışmaz.
+    tree3body.setBottomColor(100, 100, 100);
+    tree3body.setTopColor(20, 20, 20);
+    tree3body.setPanelColor(25, 55, 75);
+    tree3body.refreshColors();
+    */
 }   
 
 /**
