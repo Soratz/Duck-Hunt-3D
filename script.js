@@ -1,5 +1,5 @@
 var camera = new Camera();
-
+var weapon;
 var keys = {};
 
 var bullets = [];
@@ -22,7 +22,7 @@ function main() {
         alert("Unable to initialize WebGL. Your browser or machine may not support it.");
         return;
     }
-
+    weapon = new Weapon(gl);
     textCanvas.onclick = function() {
         canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
         
@@ -120,6 +120,7 @@ function checkKeys(delta) {
         let direction = keys['87'] ? 1 : -1; // forward -> 1, backward -> -1
         camera.translation.x -= delta * camera.movSpeed * direction * Math.sin(camera.rotation.y);
         camera.translation.z -= delta * camera.movSpeed * direction * Math.cos(camera.rotation.y);
+        weapon.updateWeaponPos(camera.translation, camera.rotation);
         //console.log(camera.translation);
     }
 
@@ -127,6 +128,7 @@ function checkKeys(delta) {
         let direction = keys['65'] ? 1 : -1; // left -> 1, right -> -1
         camera.translation.x -= delta * camera.movSpeed * direction * Math.sin(camera.rotation.y + Math.PI / 2);
         camera.translation.z -= delta * camera.movSpeed * direction * Math.cos(camera.rotation.y + Math.PI / 2);
+        weapon.updateWeaponPos(camera.translation, camera.rotation);
         //console.log(camera.translation);
     }
 
@@ -158,6 +160,7 @@ window.onkeydown = function(e) {
         camera.isCrouched = false;
         }
     }
+    
     e.preventDefault();
 };
 
@@ -175,7 +178,9 @@ window.onmousedown = function(e){
                             z: camera.translation.z - 10 * Math.cos(camera.rotation.x ) * Math.cos(camera.rotation.y) };
                         
 
-    bullet.rotation = {x: camera.rotation.x + Math.PI / 2, y: camera.rotation.y, z: camera.rotation.z};
+    bullet.rotation = { x: camera.rotation.x + Math.PI / 2, 
+                        y: camera.rotation.y,
+                        z: camera.rotation.z};
 
     var horizontalV = Math.sin(bullet.rotation.x);
 
@@ -190,6 +195,11 @@ window.onmousemove = function(e) {
     camera.rotation.y -= camera.rotateSpeed * (e.movementX);
     
     camera.rotation.x -= camera.rotateSpeed * (e.movementY);
+    
+    weapon.updateWeaponPos(camera.translation, camera.rotation);
+    weapon.barrel.rotation= { x: camera.rotation.x + Math.PI / 2, 
+        y: camera.rotation.y,
+        z: camera.rotation.z};
     
     if(camera.rotation.x > limit) {
         camera.rotation.x = limit;
