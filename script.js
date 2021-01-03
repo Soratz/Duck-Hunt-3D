@@ -39,7 +39,7 @@ function main() {
     matrixLocation = gl.getUniformLocation(program, "u_matrix");
 
     gl.enable(gl.DEPTH_TEST);
-    gl.clearColor(0, 0, 0, 1.0);
+    gl.clearColor(0.4492, 0.839, 1, 1.0);
     gl.useProgram(program);
 
     createMap(gl);
