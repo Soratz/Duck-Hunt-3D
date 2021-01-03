@@ -394,7 +394,7 @@ class Bullet extends Cylinder{
 
 class Weapon{
     constructor(gl) {
-        this.barrel = new Cylinder(gl, 8, 0.2, 20);
+        this.barrel = new Cylinder(gl, 8, 0.3, 8);
         this.barrel.rotation.x = degToRad(90); 
         this.barrel.translation = {x: 0.3, y:-0.5, z:-5};
 
@@ -403,9 +403,9 @@ class Weapon{
     }
 
     updateWeaponPos({x: camTx , y: camTy, z: camTz}, {x: camRx , y: camRy, z: f}){
-        weapon.barrel.translation = {    x: camTx - 5 * Math.cos(camRx + degToRad(-20)) * Math.sin(camRy), 
-                                         y: camTy + 5 * Math.sin(camRx + degToRad(-20)), 
-                                        z: camTz - 5 * Math.cos(camRx + degToRad(-20)) * Math.cos(camRy) };
+        weapon.barrel.translation = {    x: camTx - 10 * Math.cos(camRx + degToRad(-5)) * Math.sin(camRy), 
+                                         y: camTy + 10 * Math.sin(camRx + degToRad(-5)), 
+                                         z: camTz - 10 * Math.cos(camRx + degToRad(-5)) * Math.cos(camRy) };
     }
 }
 
