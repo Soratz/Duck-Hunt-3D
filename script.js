@@ -171,10 +171,12 @@ window.onkeyup = function(e) {
 
 window.onmousedown = function(e){
 
-    var bullet = new Bullet(gl, 10, 0.3, 3);
+    var bullet = new Bullet(gl, 10, 10, 100);
+    bullet.setAllColors(251, 51, 139);
     bullet.translation = {  x: camera.translation.x - 10 * Math.cos(camera.rotation.x ) * Math.sin(camera.rotation.y), 
                             y: camera.translation.y + 10 * Math.sin(camera.rotation.x), 
                             z: camera.translation.z - 10 * Math.cos(camera.rotation.x ) * Math.cos(camera.rotation.y) };
+                        
 
     bullet.rotation = {x: camera.rotation.x + Math.PI / 2, y: camera.rotation.y, z: camera.rotation.z};
 

@@ -360,7 +360,8 @@ class Bullet extends Cylinder{
             z: 0
         };
 
-        this.speed = 500;
+        this.speed = 100;
+        this.timeOut = 5;
 
         this.die = function() {
             let i1 = GameObject.objects.indexOf(this);
@@ -372,12 +373,16 @@ class Bullet extends Cylinder{
     }
     
     moveBullet(delta) {
+        console.log(this.timeOut);
+        this.timeOut -= delta;
         let target = this.checkCollision();
         if(target instanceof Duck) {
             target.die();
             this.die();
             gameScore += 1;
-        } else {
+        } else if(this.timeOut <= 0){
+            this.die();
+        }else {
             this.translation.x -= delta  * this.bulletVector.x;
             this.translation.y -= delta  * this.bulletVector.y; 
             this.translation.z -= delta  * this.bulletVector.z;
