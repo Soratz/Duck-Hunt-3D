@@ -23,7 +23,7 @@ class GameObject {
         this.centerTranslation = {
             x: 0, y: 0, z: 0
         }
-        this.hitRadius = 1
+        this.hitRadius = 1;
         
         this.posBuffer = gl.createBuffer();
         this.colorBuffer = gl.createBuffer();
@@ -86,6 +86,35 @@ class GameObject {
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Uint8Array(this.colors), gl.STATIC_DRAW);
+    }
+}
+
+class Triangle extends GameObject {
+    constructor(gl, x) {
+        super(gl);
+        this.centerTranslation = {
+            x: 0, y: 50, z: 0
+        }
+
+        this.points = [
+            0, 0, 0,
+            -x, -x, 0,
+            x, -x, 0
+        ];
+
+        this.colors = [
+            50, 50, 50,
+            50, 50, 50,
+            50, 50, 50
+        ]
+    }
+
+    setColor(r, g, b) {
+        this.colors = [
+            r, g, b,
+            r, g, b,
+            r, g, b
+        ];
     }
 }
 
@@ -322,7 +351,7 @@ class Camera {
         }
         this.rotation = {
             x: 0,
-            y: 0,
+            y: Math.PI,
             z: 0
         }
 

@@ -14,6 +14,20 @@ function createMap(gl) {
     ringString121 = new Cylinder(gl, 20, 1, 2);
     ringString122 = new Cylinder(gl, 20, 1, 2);
     wallBehind = new Cube(gl, 2);
+    grass = new Cube(gl, 1);
+    mountain = new Triangle(gl, 100);
+    mountain.translation.z = 2000;
+    mountain.translation.y = 400;
+    mountain.scale.x = 10;
+    mountain.scale.y = 10;
+    mountain.setColor(90, 61, 32);
+
+    mountainPeek = new Triangle(gl, 20);
+    mountainPeek.translation.z = 1998;
+    mountainPeek.translation.y = 400;
+    mountainPeek.scale.x = 10;
+    mountainPeek.scale.y = 10;
+    mountainPeek.setColor(230, 230, 230);
 
     tree1body = new Cylinder(gl, 12, 6, 180); //brown
     tree1branch1 = new Cylinder(gl, 12, 3, 50); //brown (lighter maybe?)
@@ -109,6 +123,11 @@ function createMap(gl) {
     tree3leaf1.translation = {x: -250, y: 110, z:200}
     tree3leaf1.scale.y = 0.5;
     tree3leaf2.translation = {x: -250, y: 150, z:200}
+
+    grass.translation.y = -70;
+    grass.scale.x = 10000;
+    grass.scale.z = 10000;
+    grass.setColor(38, 139, 7);
 
     floor.setColor(150, 50, 50);  // küpler böyle set color diyerek direk yapabilirsin
 
