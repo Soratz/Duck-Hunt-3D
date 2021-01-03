@@ -134,6 +134,10 @@ function updateObjects(delta) {
         duck.translation = {x: randomSpawner.x, y: randomSpawner.y, z: randomSpawner.z};
         randomSpawner.updateSpawnVariables();
     }
+
+    Duck.objects.forEach(element => {
+       element.moveRandom();
+    });
 }
 
 class RandomSpawner {

@@ -329,7 +329,7 @@ class Camera {
         this.movSpeed = 80;
         this.runSpeed = 500;
         this.walkSpeed = 80;
-        this.rotateSpeed = 0.006;
+        this.rotateSpeed = 0.003;
         this.crouchAmount = 8;
         this.crouchSpeed = 60;
         this.isRunning = false;
@@ -394,11 +394,24 @@ class Bullet extends Cylinder{
 
 
 class Duck extends GameObject {
+    static objects = [];
     constructor(gl) {
         super(gl);
 
+        Duck.objects.push(this);
+
+        this.die = function() {
+            let i1 = GameObject.objects.indexOf(this);
+            let i2 = Duck.objects.indexOf(this);
+            GameObject.objects.splice(i1, 1);
+            Duck.objects.splice(i2, 1);
+            delete this;
+        };
+
         this.hitRadius = 5;
         this.scale.y = 1.3;
+        this.maxSpeed = {x: 1, y: 0.2};
+        this.minSpeed = {x: -1, y: -0.2};
         this.centerTranslation = {
             x: -7.2,
             y: -0.75,
@@ -834,5 +847,13 @@ class Duck extends GameObject {
             // 32
 
         ];
+    }
+
+    moveRandom() {
+        let delta_x = Math.random() * (this.maxSpeed.x - this.minSpeed.x) + this.minSpeed.x; 
+        let delta_y = Math.random() * (this.maxSpeed.y - this.minSpeed.y) + this.minSpeed.y; 
+
+        this.translation.x += delta_x;
+        this.translation.y += delta_y;
     }
 }
