@@ -79,12 +79,9 @@ function drawScene(now) {
     
     old = now;
 
-    var size
-    if( (size = bullets.length) != 0){
-        for (var i = 0 ; i< size ; i++){
-        bullets[i].moveBullet(delta);
-        }
-    }
+    bullets.forEach((bullet) => {
+        bullet.moveBullet(delta);
+    });
 
     GameObject.objects.forEach(drawObject);
     

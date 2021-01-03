@@ -1,4 +1,6 @@
 //
+var randomSpawner;
+
 function createMap(gl) {
     floor = new Cube(gl, 60);
     ringPole1 = new Cube(gl, 5);
@@ -29,6 +31,7 @@ function createMap(gl) {
     tree3leaf1 = new Cube(gl, 120)
     tree3leaf2 = new Cube(gl, 70)
 
+    randomSpawner = new RandomSpawner(1, 5);
     duck = new Duck(gl);
 
     duck.translation = {x: 20, y: 10, z: 200};
@@ -125,6 +128,35 @@ function createMap(gl) {
  * @param {number} delta 
  */
 function updateObjects(delta) {
-    let rotationSpeed = degToRad(17); // radian per second
+    randomSpawner.spawnTime -= delta;
+    if(randomSpawner.spawnTime <= 0) {
+        let duck = new Duck(gl);
+        duck.translation = {x: randomSpawner.x, y: randomSpawner.y, z: randomSpawner.z};
+        randomSpawner.updateSpawnVariables();
+    }
+}
 
+class RandomSpawner {
+    constructor(minTime, maxTime) {
+        this.min_time = minTime;
+        this.max_time = maxTime;
+        this.maxZ = 270;
+        this.minZ = 100;
+        this.maxY = 100;
+        this.minY = 0;
+        this.maxX = 200;
+        this.minX = -200;
+        this.updateSpawnVariables();
+    }
+
+    updateSpawnVariables() {
+        this.spawnTime = this.randomValue(this.min_time, this.max_time);
+        this.x = this.randomValue(this.minX, this.maxX);
+        this.y = this.randomValue(this.minY, this.maxY);
+        this.z = this.randomValue(this.minZ, this.maxZ);
+    }
+
+    randomValue(min, max) {
+        return Math.random() * (max - min) + min;
+    }
 }
