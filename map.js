@@ -140,8 +140,8 @@ class RandomSpawner {
     constructor(minTime, maxTime) {
         this.min_time = minTime;
         this.max_time = maxTime;
-        this.maxZ = 270;
-        this.minZ = 100;
+        this.maxZ = 370;
+        this.minZ = 200;
         this.maxY = 100;
         this.minY = 0;
         this.maxX = 200;
