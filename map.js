@@ -130,13 +130,15 @@ function createMap(gl) {
 function updateObjects(delta) {
     randomSpawner.spawnTime -= delta;
     if(randomSpawner.spawnTime <= 0) {
-        let duck = new Duck(gl);
-        duck.translation = {x: randomSpawner.x, y: randomSpawner.y, z: randomSpawner.z};
-        randomSpawner.updateSpawnVariables();
+        if(Duck.objects.length <= 30) {
+            let duck = new Duck(gl);
+            duck.translation = {x: randomSpawner.x, y: randomSpawner.y, z: randomSpawner.z};
+            randomSpawner.updateSpawnVariables();
+        }
     }
 
     Duck.objects.forEach(element => {
-       element.moveRandom();
+       element.moveRandom(delta);
     });
 }
 

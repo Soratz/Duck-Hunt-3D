@@ -360,7 +360,7 @@ class Bullet extends Cylinder{
             z: 0
         };
 
-        this.speed = 500;
+        this.speed = 600;
         this.timeOut = 5;
 
         this.die = function() {
@@ -398,8 +398,6 @@ class Duck extends GameObject {
     constructor(gl) {
         super(gl);
 
-        Duck.objects.push(this);
-
         this.die = function() {
             let i1 = GameObject.objects.indexOf(this);
             let i2 = Duck.objects.indexOf(this);
@@ -408,15 +406,17 @@ class Duck extends GameObject {
             delete this;
         };
 
+        this.duckTime = 0;
         this.hitRadius = 5;
         this.scale.y = 1.3;
-        this.maxSpeed = {x: 1, y: 0.2};
-        this.minSpeed = {x: -1, y: -0.2};
+        this.speed = 0.7;
         this.centerTranslation = {
             x: -7.2,
             y: -0.75,
             z: 0
         }
+        Duck.objects.push(this);
+
         this.points = [
             // left eye
             2.5, 2.2, 0.05,
@@ -849,9 +849,17 @@ class Duck extends GameObject {
         ];
     }
 
-    moveRandom() {
-        let delta_x = Math.random() * (this.maxSpeed.x - this.minSpeed.x) + this.minSpeed.x; 
-        let delta_y = Math.random() * (this.maxSpeed.y - this.minSpeed.y) + this.minSpeed.y; 
+    moveRandom(delta) {
+        this.duckTime += delta * this.speed;
+        let delta_x = Math.cos(this.duckTime) * 1.5;
+        let delta_y = Math.sin(this.duckTime) / 3;
+
+        if(delta_x > 0 && this.rotation.y != Math.PI) {
+            this.rotation.y = Math.PI;
+        } 
+        else if (delta_x < 0 && this.rotation.y != 0){
+            this.rotation.y = 0;
+        }
 
         this.translation.x += delta_x;
         this.translation.y += delta_y;
