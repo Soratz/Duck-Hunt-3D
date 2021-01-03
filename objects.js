@@ -373,15 +373,17 @@ class Bullet extends Cylinder{
     }
     
     moveBullet(delta) {
-        console.log(this.timeOut);
         this.timeOut -= delta;
+
+        if(this.timeOut <= 0){
+            this.die();
+        }
+
         let target = this.checkCollision();
         if(target instanceof Duck) {
             target.die();
             this.die();
             gameScore += 1;
-        } else if(this.timeOut <= 0){
-            this.die();
         }else {
             this.translation.x -= delta  * this.bulletVector.x;
             this.translation.y -= delta  * this.bulletVector.y; 
