@@ -14,7 +14,9 @@ function createMap(gl) {
     ringString121 = new Cylinder(gl, 20, 1, 2);
     ringString122 = new Cylinder(gl, 20, 1, 2);
     wallBehind = new Cube(gl, 2);
+
     grass = new Cube(gl, 1);
+
     mountain = new Triangle(gl, 100);
     mountain.translation.z = 2000;
     mountain.translation.y = 400;
@@ -28,6 +30,27 @@ function createMap(gl) {
     mountainPeek.scale.x = 10;
     mountainPeek.scale.y = 10;
     mountainPeek.setColor(230, 230, 230);
+
+    cloud11= new Cube(gl, 150);
+    cloud11.translation = {x: -350, y: 1000, z: 1500}
+    cloud11.setColor(256,256,256);
+    cloud11.scale.x = 2
+    cloud12= new Cube(gl, 100);
+    cloud12.translation = {x: -500, y: 960, z: 1500}
+    cloud12.setColor(256,256,256);
+    cloud13= new Cube(gl, 100);
+    cloud13.translation = {x: -200, y: 960, z: 1500}
+    cloud13.setColor(256,256,256);
+
+    cloud21= new Cube(gl, 130);
+    cloud21.translation = {x: 800, y: 800, z: 1500}
+    cloud21.setColor(256,256,256);
+    cloud22= new Cube(gl, 90);
+    cloud22.translation = {x: 700, y: 810, z: 1500}
+    cloud22.setColor(256,256,256);
+    cloud23= new Cube(gl, 90);
+    cloud23.translation = {x: 900, y: 810, z: 1500}
+    cloud23.setColor(256,256,256);
 
     tree1body = new Cylinder(gl, 12, 6, 180); //brown
     tree1body.setAllColors(81,69,48);
