@@ -366,9 +366,9 @@ class Camera {
         this.isZoomed = false;
         this.fieldOfView = 67;
         this.zoomFOV = 50;
-        this.zoomRotateSpeed = 0.0016;
+        this.zoomRotateSpeed = 0.0015;
         this.normalFOV = 67;
-        this.normalRotateSpeed = 0.003;
+        this.normalRotateSpeed = 0.0025;
     }
 }
 
