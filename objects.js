@@ -363,7 +363,10 @@ class Camera {
         this.crouchSpeed = 60;
         this.isRunning = false;
         this.isCrouched = false;
+        this.isZoomed = false;
         this.fieldOfView = 67;
+        this.zoomFOV = 50;
+        this.normalFOV = 67;
     }
 }
 

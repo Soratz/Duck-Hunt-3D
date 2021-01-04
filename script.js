@@ -158,11 +158,20 @@ function checkKeys(delta) {
             camera.movSpeed = camera.walkSpeed;
             camera.isRunning = false;
         }
-    
+
+        if(keys['32'] && camera.isZoomed == false) {
+            camera.fieldOfView = camera.zoomFOV;
+            camera.isZoomed = true;
+        } 
+        else if(camera.isZoomed == true && !keys['32']) {
+            camera.fieldOfView = camera.normalFOV;
+            camera.isZoomed = false;
+        }
 }
 
 window.onkeydown = function(e) {
     keys[e.keyCode] = true;
+    // 32
     
     if(e.keyCode == "67" && camera.isRunning == false){
         if(camera.isCrouched == false ){
