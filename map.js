@@ -88,7 +88,7 @@ function createMap(gl) {
     tree3leaf2 = new Cube(gl, 70)
     tree3leaf2.setColor(78, 19, 48);
 
-    randomSpawner = new RandomSpawner(1, 5);
+    randomSpawner = new RandomSpawner(1, 4);
     duck = new Duck(gl);
 
     duck.translation = {x: 20, y: 10, z: 200};

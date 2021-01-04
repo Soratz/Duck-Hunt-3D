@@ -509,7 +509,7 @@ class Duck extends GameObject {
         };
 
         this.duckTime = 0;
-        this.hitRadius = 6.5;
+        this.hitRadius = 6;
         this.scale.y = 1.3;
         this.speed = 0.7;
         this.centerTranslation = {
