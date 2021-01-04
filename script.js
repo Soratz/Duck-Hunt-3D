@@ -116,32 +116,41 @@ function drawObject(object) {
 }
 
 function checkKeys(delta) {
-    if(keys['87']  || keys['83']) {
-        let direction = keys['87'] ? 1 : -1; // forward -> 1, backward -> -1
-        camera.translation.x -= delta * camera.movSpeed * direction * Math.sin(camera.rotation.y);
-        camera.translation.z -= delta * camera.movSpeed * direction * Math.cos(camera.rotation.y);
-        weapon.updateWeaponPos(camera.translation, camera.rotation);
-        //console.log(camera.translation);
-    }
+    
+   
+        if(keys['87']  || keys['83']) {
+            let direction = keys['87'] ? 1 : -1; // forward -> 1, backward -> -1
+            var x = camera.translation.x - delta * camera.movSpeed * direction * Math.sin(camera.rotation.y);
+            var z = camera.translation.z - delta * camera.movSpeed * direction * Math.cos(camera.rotation.y);
+            console.log(x,z);
+            if(x<90 && z <70 && x > -72 && z > -30){
+            camera.translation.x = x;
+            camera.translation.z = z;
+            weapon.updateWeaponPos(camera.translation, camera.rotation);
+            }
+            
+        }
 
-    if(keys['65']  || keys['68']) {
-        let direction = keys['65'] ? 1 : -1; // left -> 1, right -> -1
-        camera.translation.x -= delta * camera.movSpeed * direction * Math.sin(camera.rotation.y + Math.PI / 2);
-        camera.translation.z -= delta * camera.movSpeed * direction * Math.cos(camera.rotation.y + Math.PI / 2);
-        weapon.updateWeaponPos(camera.translation, camera.rotation);
-        //console.log(camera.translation);
-    }
+        if(keys['65']  || keys['68']) {
+            let direction = keys['65'] ? 1 : -1; // left -> 1, right -> -1
+            var x = camera.translation.x -  delta * camera.movSpeed * direction * Math.sin(camera.rotation.y + Math.PI / 2);
+            var z = camera.translation.z - delta * camera.movSpeed * direction * Math.cos(camera.rotation.y + Math.PI / 2);
+            if(x<90 && z <70 && x > -72 && z > -30){
+            camera.translation.x = x;
+            camera.translation.z = z;
+            weapon.updateWeaponPos(camera.translation, camera.rotation);
+            }
+        }
 
-    if(keys['16'] && camera.isCrouched == false) {
-       camera.movSpeed = camera.runSpeed;
-       camera.isRunning = true;
-    }
+        if(keys['16'] && camera.isCrouched == false) {
+        camera.movSpeed = camera.runSpeed;
+        camera.isRunning = true;
+        }
 
-    if(camera.isRunning == true && keys['16'] != 1){
-        camera.movSpeed = camera.walkSpeed;
-        camera.isRunning = false;
-    }
-
+        if(camera.isRunning == true && keys['16'] != 1){
+            camera.movSpeed = camera.walkSpeed;
+            camera.isRunning = false;
+        }
     
 }
 
