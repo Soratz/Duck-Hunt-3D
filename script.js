@@ -161,10 +161,12 @@ function checkKeys(delta) {
 
         if(keys['32'] && camera.isZoomed == false) {
             camera.fieldOfView = camera.zoomFOV;
+            camera.rotateSpeed = camera.zoomRotateSpeed;
             camera.isZoomed = true;
         } 
         else if(camera.isZoomed == true && !keys['32']) {
             camera.fieldOfView = camera.normalFOV;
+            camera.rotateSpeed = camera.normalRotateSpeed;
             camera.isZoomed = false;
         }
 }
@@ -177,9 +179,11 @@ window.onkeydown = function(e) {
         if(camera.isCrouched == false ){
         camera.translation.y -= camera.crouchAmount;
         camera.movSpeed -= camera.crouchSpeed;
+        weapon.updateWeaponPos(camera.translation, camera.rotation);
         camera.isCrouched = true;
         }
         else{
+        weapon.updateWeaponPos(camera.translation, camera.rotation);
         camera.translation.y += camera.crouchAmount;
         camera.movSpeed += camera.crouchSpeed;
         camera.isCrouched = false;
@@ -197,7 +201,7 @@ window.onkeyup = function(e) {
 window.onmousedown = function(e){
 
     var bullet = new Bullet(gl, 10, 0.3, 1);
-    bullet.setAllColors(167, 79, 32);
+    
     bullet.translation = {  x: camera.translation.x - 10 * Math.cos(camera.rotation.x ) * Math.sin(camera.rotation.y), 
                             y: camera.translation.y + 10 * Math.sin(camera.rotation.x), 
                             z: camera.translation.z - 10 * Math.cos(camera.rotation.x ) * Math.cos(camera.rotation.y) };

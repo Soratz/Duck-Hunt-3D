@@ -356,7 +356,7 @@ class Camera {
         }
 
         this.movSpeed = 80;
-        this.runSpeed = 500;
+        this.runSpeed = 140;
         this.walkSpeed = 80;
         this.rotateSpeed = 0.003;
         this.crouchAmount = 8;
@@ -366,7 +366,9 @@ class Camera {
         this.isZoomed = false;
         this.fieldOfView = 67;
         this.zoomFOV = 50;
+        this.zoomRotateSpeed = 0.0016;
         this.normalFOV = 67;
+        this.normalRotateSpeed = 0.003;
     }
 }
 
@@ -392,8 +394,10 @@ class Bullet extends Cylinder{
             z: 0
         };
 
-        this.speed = 600;
-        this.timeOut = 5;
+        this.speed = 700;
+        this.timeOut = 4;
+        
+        this.setAllColors(181, 134, 70);
 
         this.die = function() {
             let i1 = GameObject.objects.indexOf(this);
