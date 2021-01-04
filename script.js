@@ -97,6 +97,12 @@ function drawScene(now) {
     ctx.fillText("+", textCanvas.width/2, textCanvas.height/2 + 15);
     ctx.strokeStyle = 'black';
     ctx.strokeText("+", textCanvas.width/2, textCanvas.height/2 + 15);
+    ctx.textAlign = "start";
+    ctx.fillStyle = 'white';
+    ctx.font = "15px Arial";
+    ctx.fillText("Run: Shift", 10, textCanvas.height - 50);
+    ctx.fillText("Crouch: C", 10, textCanvas.height - 30);
+    ctx.fillText("Zoom: Space", 10, textCanvas.height - 10);
 
     requestAnimationFrame(drawScene);
 }
@@ -183,9 +189,9 @@ window.onkeydown = function(e) {
         camera.isCrouched = true;
         }
         else{
-        weapon.updateWeaponPos(camera.translation, camera.rotation);
         camera.translation.y += camera.crouchAmount;
         camera.movSpeed += camera.crouchSpeed;
+        weapon.updateWeaponPos(camera.translation, camera.rotation);
         camera.isCrouched = false;
         }
     }

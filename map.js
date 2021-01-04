@@ -20,13 +20,13 @@ function createMap(gl) {
     mountain = new Triangle(gl, 100);
     mountain.translation.z = 2000;
     mountain.translation.y = 400;
-    mountain.translation = {x: 600, y:400, z: 2000};
+    mountain.translation = {x: 600, y:468, z: 2000};
     mountain.scale.x = 10;
     mountain.scale.y = 10;
     mountain.setColor(90, 61, 32);
 
     mountainPeek = new Triangle(gl, 20);
-    mountainPeek.translation = {x: 600, y:400, z: 1998};
+    mountainPeek.translation = {x: 600, y:468, z: 1998};
     mountainPeek.scale.x = 10;
     mountainPeek.scale.y = 10;
     mountainPeek.setColor(230, 230, 230);
