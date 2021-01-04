@@ -425,15 +425,24 @@ class Weapon{
     constructor(gl) {
         this.barrel = new Cylinder(gl, 20, 0.25, 8);
         this.stock = new Cube(gl, 0.3);
-        this.arpa = new Cube(gl,0.15)
+        this.upperStock = new Cube(gl, 0.3);
+        this.arpa = new Cube(gl,0.15);
         this.stock.scale.y = 2;
-        this.arpa.scale.y=2;
+        this.arpa.scale.y = 1.3;
         this.barrel.rotation.x = degToRad(90); 
         this.barrel.translation = {x: 0.3, y:-0.5, z:-5};
+        this.barrel.scale.x = 0.8;
+        this.barrel.scale.z = 0.9;
+        this.upperStock.scale.y = 2.4;
+        this.upperStock.scale.x = 0.8;
+        this.upperStock.scale.z = 0.6;
 
-        this.arpa.setColor(63,0,0);
-        this.barrel.setPanelColor(0, 0, 139);
-        this.barrel.setBottomColor(63, 63, 0);
+        this.barrel.setAllColors(54, 50, 47);
+        this.stock.setColor(82, 52, 39);
+        this.arpa.setColor(30, 28, 24);
+        this.upperStock.setColor(62, 42, 39);
+
+        this.barrel.setTopColor(42, 38, 37);
         this.barrel.refreshColors();
         
     }
@@ -445,10 +454,35 @@ class Weapon{
         this.stock.translation = {  x: camTx - 2.3 * Math.cos(camRx + degToRad(-30)) * Math.sin(camRy), 
                                     y: camTy + 2.3 * Math.sin(camRx + degToRad(-30)), 
                                     z: camTz - 2.3 * Math.cos(camRx + degToRad(-30)) * Math.cos(camRy) };
+        this.upperStock.translation = {  x: camTx - 2.3 * Math.cos(camRx + degToRad(-30)) * Math.sin(camRy), 
+                                    y: camTy + 2.3 * Math.sin(camRx + degToRad(-30)), 
+                                    z: camTz - 2.3 * Math.cos(camRx + degToRad(-30)) * Math.cos(camRy) };
         this.arpa.translation = {x: camTx - 10 * Math.cos(camRx + degToRad(-3.2)) * Math.sin(camRy), 
                                  y: camTy + 10 * Math.sin(camRx + degToRad(-3.2)), 
                                  z: camTz - 10 * Math.cos(camRx + degToRad(-3.2)) * Math.cos(camRy)}
                                  
+    }
+
+    updateRotation({x: camRx , y: camRy, z: camRz}) {
+        weapon.barrel.rotation= { 
+            x: camRx + Math.PI / 2, 
+            y: camRy,
+            z: camRz};
+    
+        weapon.stock.rotation= { 
+            x: camRx, 
+            y: camRy,
+            z: camRz};
+    
+        weapon.arpa.rotation =  { 
+            x: camRx, 
+            y: camRy,
+            z: camRz};
+    
+        weapon.upperStock.rotation = { 
+            x: camRx, 
+            y: camRy,
+            z: camRz};
     }
 
 }

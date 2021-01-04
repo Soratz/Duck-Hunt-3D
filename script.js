@@ -42,6 +42,8 @@ function main() {
     gl.useProgram(program);
 
     createMap(gl);
+    weapon.updateWeaponPos(camera.translation, camera.rotation);
+    weapon.updateRotation(camera.rotation);
 
     old = 0;
 
@@ -210,19 +212,6 @@ window.onmousemove = function(e) {
     
     camera.rotation.x -= camera.rotateSpeed * (e.movementY);
     
-    weapon.updateWeaponPos(camera.translation, camera.rotation);
-    weapon.barrel.rotation= { x: camera.rotation.x + Math.PI / 2, 
-        y: camera.rotation.y,
-        z: camera.rotation.z};
-
-    weapon.stock.rotation= { x: camera.rotation.x, 
-                            y: camera.rotation.y,
-                            z: camera.rotation.z};
-
-    weapon.arpa.rotation =  { x: camera.rotation.x, 
-                            y: camera.rotation.y,
-                             z: camera.rotation.z};
-    
     if(camera.rotation.x > limit) {
         camera.rotation.x = limit;
     }
@@ -230,6 +219,8 @@ window.onmousemove = function(e) {
         camera.rotation.x = -limit;
     }
 
+    weapon.updateWeaponPos(camera.translation, camera.rotation);
+    weapon.updateRotation(camera.rotation);
     
 }
 

@@ -69,15 +69,19 @@ function createMap(gl) {
     
     ringPole1.translation = {x: 95, y: -10, z: 75};
     ringPole1.scale.y = 5;
+    ringPole1.setColor(127, 106, 94);
 
     ringPole2.translation = {x: -75, y: -10, z: 75};
     ringPole2.scale.y = 5;
+    ringPole2.setColor(127, 106, 94);
 
     ringPole3.translation = {x: 95, y: -10, z: -35};
     ringPole3.scale.y = 5;
+    ringPole3.setColor(127, 106, 94);
 
     ringPole4.translation = {x: -75, y: -10, z: -35};
     ringPole4.scale.y = 5;
+    ringPole4.setColor(127, 106, 94);
 
     ringString341.translation = {x: -75, y: -13, z: -40};
     ringString341.scale.y = 60;
@@ -106,6 +110,7 @@ function createMap(gl) {
     wallBehind.translation = {x: 10, y: 0, z: -40};
     wallBehind.scale.y = 20;
     wallBehind.scale.x = 90;
+    wallBehind.setColor(106, 78, 56);
 
     tree1body.translation = { x: 250, y: -70, z: 250};
     tree1branch1.translation = {x: 250, y: 20, z: 250};
@@ -142,17 +147,8 @@ function createMap(gl) {
     grass.scale.z = 10000;
     grass.setColor(38, 139, 7);
 
-    floor.setColor(150, 50, 50);  // küpler böyle set color diyerek direk yapabilirsin
-
-     // silindirler de setAll colors dersen bütün yüzleri aynı renk ypaıyor
-    
-    /*
-    Eğer yüzleri ayrı ayrı boyayacaksan alttaki gibi en son refreshColors() demeyi unutma yoksa çalışmaz.
-    tree3body.setBottomColor(100, 100, 100);
-    tree3body.setTopColor(20, 20, 20);
-    tree3body.setPanelColor(25, 55, 75);
-    tree3body.refreshColors();
-    */
+    //floor.setColor(150, 50, 50);  
+    floor.setColor(110, 22, 29);
 }   
 
 /**
@@ -162,7 +158,7 @@ function createMap(gl) {
 function updateObjects(delta) {
     randomSpawner.spawnTime -= delta;
     if(randomSpawner.spawnTime <= 0) {
-        if(Duck.objects.length <= 30) {
+        if(Duck.objects.length <= randomSpawner.spawnLimit) {
             let duck = new Duck(gl);
             duck.translation = {x: randomSpawner.x, y: randomSpawner.y, z: randomSpawner.z};
             randomSpawner.updateSpawnVariables();
@@ -184,6 +180,7 @@ class RandomSpawner {
         this.minY = 0;
         this.maxX = 200;
         this.minX = -200;
+        this.spawnLimit = 20;
         this.updateSpawnVariables();
     }
 
