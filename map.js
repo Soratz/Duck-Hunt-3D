@@ -31,6 +31,13 @@ function createMap(gl) {
     mountainPeek.scale.y = 10;
     mountainPeek.setColor(230, 230, 230);
 
+    praise = new Cylinder(gl, 25, 400, 1);
+    praise.rotation.y = degToRad(-30);
+    praise.rotation.x = degToRad(80);
+    praise.rotation.z = degToRad(-20);
+    praise.setAllColors(249,215,28);
+    
+    praise.translation = {x: -1100, y:2500, z: 2200};
     cloud11= new Cube(gl, 150);
     cloud11.translation = {x: 300, y: 940, z: 1800}
     cloud11.setColor(230, 230, 230);
