@@ -32,25 +32,25 @@ function createMap(gl) {
     mountainPeek.setColor(230, 230, 230);
 
     cloud11= new Cube(gl, 150);
-    cloud11.translation = {x: -350, y: 1000, z: 1500}
-    cloud11.setColor(256,256,256);
+    cloud11.translation = {x: 300, y: 940, z: 1800}
+    cloud11.setColor(230, 230, 230);
     cloud11.scale.x = 2
     cloud12= new Cube(gl, 100);
-    cloud12.translation = {x: -500, y: 960, z: 1500}
-    cloud12.setColor(256,256,256);
+    cloud12.translation = {x: 150, y: 905, z: 1800}
+    cloud12.setColor(230, 230, 230);
     cloud13= new Cube(gl, 100);
-    cloud13.translation = {x: -200, y: 960, z: 1500}
-    cloud13.setColor(256,256,256);
+    cloud13.translation = {x: 450, y: 905, z: 1800}
+    cloud13.setColor(230, 230, 230);
 
     cloud21= new Cube(gl, 130);
-    cloud21.translation = {x: 800, y: 800, z: 1500}
-    cloud21.setColor(256,256,256);
+    cloud21.translation = {x: 800, y: 800, z: 1800}
+    cloud21.setColor(230, 230, 230);
     cloud22= new Cube(gl, 90);
-    cloud22.translation = {x: 700, y: 810, z: 1500}
-    cloud22.setColor(256,256,256);
+    cloud22.translation = {x: 700, y: 810, z: 1800}
+    cloud22.setColor(230, 230, 230);
     cloud23= new Cube(gl, 90);
-    cloud23.translation = {x: 900, y: 810, z: 1500}
-    cloud23.setColor(256,256,256);
+    cloud23.translation = {x: 900, y: 810, z: 1800}
+    cloud23.setColor(230, 230, 230);
 
     tree1body = new Cylinder(gl, 12, 6, 180); //brown
     tree1body.setAllColors(81,69,48);
