@@ -122,10 +122,13 @@ function checkKeys(delta) {
             let direction = keys['87'] ? 1 : -1; // forward -> 1, backward -> -1
             var x = camera.translation.x - delta * camera.movSpeed * direction * Math.sin(camera.rotation.y);
             var z = camera.translation.z - delta * camera.movSpeed * direction * Math.cos(camera.rotation.y);
-            if(x<90 && z <70 && x > -72 && z > -30){
-            camera.translation.x = x;
-            camera.translation.z = z;
-            weapon.updateWeaponPos(camera.translation, camera.rotation);
+            if(x<90 &&  x > -72){
+                camera.translation.x = x;
+                weapon.updateWeaponPos(camera.translation, camera.rotation);
+                }
+            if (z <70 && z > -30){
+                camera.translation.z = z;
+                weapon.updateWeaponPos(camera.translation, camera.rotation);
             }
             
         }
@@ -134,10 +137,13 @@ function checkKeys(delta) {
             let direction = keys['65'] ? 1 : -1; // left -> 1, right -> -1
             var x = camera.translation.x -  delta * camera.movSpeed * direction * Math.sin(camera.rotation.y + Math.PI / 2);
             var z = camera.translation.z - delta * camera.movSpeed * direction * Math.cos(camera.rotation.y + Math.PI / 2);
-            if(x<90 && z <70 && x > -72 && z > -30){
+            if(x<90 &&  x > -72){
             camera.translation.x = x;
-            camera.translation.z = z;
             weapon.updateWeaponPos(camera.translation, camera.rotation);
+            }
+            if (z <70 && z > -30){
+                camera.translation.z = z;
+                weapon.updateWeaponPos(camera.translation, camera.rotation);
             }
         }
 
