@@ -122,7 +122,6 @@ function checkKeys(delta) {
             let direction = keys['87'] ? 1 : -1; // forward -> 1, backward -> -1
             var x = camera.translation.x - delta * camera.movSpeed * direction * Math.sin(camera.rotation.y);
             var z = camera.translation.z - delta * camera.movSpeed * direction * Math.cos(camera.rotation.y);
-            console.log(x,z);
             if(x<90 && z <70 && x > -72 && z > -30){
             camera.translation.x = x;
             camera.translation.z = z;
