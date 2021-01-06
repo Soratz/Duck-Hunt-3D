@@ -103,6 +103,10 @@ function drawScene(now) {
     ctx.fillText("Run: Shift", 10, textCanvas.height - 50);
     ctx.fillText("Crouch: C", 10, textCanvas.height - 30);
     ctx.fillText("Zoom: Space", 10, textCanvas.height - 10);
+    ctx.textAlign = "end";
+    ctx.fillStyle = 'white';
+    ctx.font = "15px Arial";
+    ctx.fillText("By Forosulion & Zerard", textCanvas.width - 10, textCanvas.height - 10)
 
     requestAnimationFrame(drawScene);
 }
