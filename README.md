@@ -1,1 +1,1 @@
-supreme-octo-chainsaw
+A webgl duck hunt game from scratch.
